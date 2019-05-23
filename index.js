@@ -1,4 +1,4 @@
-const mergeObjectsValues = (...objects) => {
+const mergeObjectsValues = (config = { deep: true }, ...objects) => {
   return objects.reduce((acc, object, index) => {
     if (index === 0) {
       return object;
@@ -9,7 +9,7 @@ const mergeObjectsValues = (...objects) => {
         if (typeof object[key] === "object") {
           return {
             ...secondAcc,
-            [key]: mergeObjectsValues(secondAcc[key], object[key])
+            [key]: mergeObjectsValues(null, secondAcc[key], object[key])
           };
         }
 

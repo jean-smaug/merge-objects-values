@@ -4,7 +4,7 @@ it("should merge object values when number", () => {
   const obj1 = { age: 22, height: 75 };
   const obj2 = { age: 12, height: 45 };
 
-  expect(merger(obj1, obj2)).toEqual({ age: 34, height: 120 });
+  expect(merger(null, obj1, obj2)).toEqual({ age: 34, height: 120 });
 });
 
 it("should merge object values recurssively", () => {
@@ -13,14 +13,14 @@ it("should merge object values recurssively", () => {
   const obj3 = { foo: { numbers: { age: 22, height: 75 } } };
   const obj4 = { foo: { numbers: { age: 12, height: 45 } } };
 
-  expect(merger(obj1, obj2)).toEqual({
+  expect(merger(null, obj1, obj2)).toEqual({
     numbers: {
       age: 34,
       height: 120
     }
   });
 
-  expect(merger(obj3, obj4)).toEqual({
+  expect(merger(null, obj3, obj4)).toEqual({
     foo: {
       numbers: {
         age: 34,
@@ -53,7 +53,7 @@ it("should merge object values recurssively with many keys", () => {
     }
   };
 
-  expect(merger(obj5, obj6)).toEqual({
+  expect(merger(null, obj5, obj6)).toEqual({
     luffy: {
       sanji: 2,
       zorro: 1
@@ -114,7 +114,7 @@ it("should merge object values recurssively with many keys", () => {
     }
   };
 
-  expect(merger(obj5, obj6)).toEqual({
+  expect(merger(null, obj5, obj6)).toEqual({
     luffy: {
       duels: {
         sanji: 2,
