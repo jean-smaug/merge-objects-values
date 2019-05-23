@@ -7,6 +7,18 @@ it("should merge object values when number", () => {
   expect(merger(null, obj1, obj2)).toEqual({ age: 34, height: 120 });
 });
 
+it("should merge object values when there is more than two items", () => {
+  const obj1 = { age: 22, height: 75 };
+  const obj2 = { age: 12, height: 45 };
+  const obj3 = { age: 42, height: 40 };
+  const obj4 = { age: 10, height: 10 };
+
+  expect(merger(null, obj1, obj2, obj3, obj4)).toEqual({
+    age: 86,
+    height: 170
+  });
+});
+
 it("should merge object values recurssively", () => {
   const obj1 = { numbers: { age: 22, height: 75 } };
   const obj2 = { numbers: { age: 12, height: 45 } };
@@ -25,6 +37,20 @@ it("should merge object values recurssively", () => {
       numbers: {
         age: 34,
         height: 120
+      }
+    }
+  });
+});
+
+it("should'nt merge object values recurssively if deep = false", () => {
+  const obj3 = { foo: { numbers: { age: 22, height: 75 } } };
+  const obj4 = { foo: { numbers: { age: 12, height: 45 } } };
+
+  expect(merger({ deep: false }, obj3, obj4)).toEqual({
+    foo: {
+      numbers: {
+        age: 12,
+        height: 45
       }
     }
   });

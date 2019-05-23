@@ -1,4 +1,8 @@
-const mergeObjectsValues = (config = { deep: true }, ...objects) => {
+const mergeObjectsValues = (configP, ...objects) => {
+  const config = configP ? configP : { deep: true };
+
+  console.log(config);
+
   return objects.reduce((acc, object, index) => {
     if (index === 0) {
       return object;
@@ -6,7 +10,7 @@ const mergeObjectsValues = (config = { deep: true }, ...objects) => {
 
     return Object.keys(object).reduce((secondAcc, key) => {
       if (acc.hasOwnProperty(key)) {
-        if (typeof object[key] === "object") {
+        if (typeof object[key] === "object" && config.deep === true) {
           return {
             ...secondAcc,
             [key]: mergeObjectsValues(null, secondAcc[key], object[key])
