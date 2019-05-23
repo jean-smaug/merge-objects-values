@@ -1,6 +1,6 @@
 {
   "name": "merge-objects-values",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "main": "index.js",
   "repository": "https://github.com/jean-smaug/merge-objects-values",
   "author": "maxime blanc <maximeblanc.dev@gmail.com>",

@@ -39,3 +39,11 @@ const object10 = { bar: "oui" };
 const object11 = { bar: "non" };
 merge({ string: (a, b) => `${a} - ${b}` }, object10, object11); // { bar: "oui - non" }
 ```
+
+The first param is the config, and all the next params are objects you want to merge.
+
+`config` :
+
+- `deep` Boolean, default true
+- `string` Function
+- `number` Function
