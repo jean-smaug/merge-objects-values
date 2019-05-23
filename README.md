@@ -27,4 +27,15 @@ const object6 = { foo: { bar: 2 } };
 const object7 = { foo: { bar: 4 } };
 
 merge({ deep: false }, object6, object7); // { foo: { bar: 4 } }
+
+// You can apply transformer on number
+const object8 = { foo: 10, bar: 3 };
+const object9 = { foo: 2, bar: 9 };
+
+merge({ number: (a, b) => a * b }, object8, object9); // { foo: 20, bar: 27 }
+
+// You can apply transformer on string
+const object10 = { bar: "oui" };
+const object11 = { bar: "non" };
+merge({ string: (a, b) => `${a} - ${b}` }, object10, object11); // { bar: "oui - non" }
 ```

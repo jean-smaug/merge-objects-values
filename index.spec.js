@@ -7,6 +7,26 @@ it("should merge object values when number", () => {
   expect(merger(null, obj1, obj2)).toEqual({ age: 34, height: 120 });
 });
 
+it("should apply transformer on number when specified in the config", () => {
+  const obj1 = { age: 22, height: 75 };
+  const obj2 = { age: 12, height: 45 };
+
+  expect(merger({ number: (a, b) => a * b }, obj1, obj2)).toEqual({
+    age: 264,
+    height: 3375
+  });
+});
+
+it("should apply transformer on string when specified in the config", () => {
+  const obj1 = { foo: "toto", bar: "oui" };
+  const obj2 = { foo: "tata", bar: "non" };
+
+  expect(merger({ string: (a, b) => `${a} - ${b}` }, obj1, obj2)).toEqual({
+    bar: "oui - non",
+    foo: "toto - tata"
+  });
+});
+
 it("should merge object values when there is more than two items", () => {
   const obj1 = { age: 22, height: 75 };
   const obj2 = { age: 12, height: 45 };

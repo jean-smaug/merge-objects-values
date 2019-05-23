@@ -1,8 +1,6 @@
 const mergeObjectsValues = (configP, ...objects) => {
   const config = configP ? configP : { deep: true };
 
-  console.log(config);
-
   return objects.reduce((acc, object, index) => {
     if (index === 0) {
       return object;
@@ -18,7 +16,20 @@ const mergeObjectsValues = (configP, ...objects) => {
         }
 
         if (typeof object[key] === "number") {
+          if (config.number) {
+            return {
+              ...secondAcc,
+              [key]: config.number(secondAcc[key], object[key])
+            };
+          }
           return { ...secondAcc, [key]: object[key] + secondAcc[key] };
+        }
+
+        if (typeof object[key] === "string" && config.string) {
+          return {
+            ...secondAcc,
+            [key]: config.string(secondAcc[key], object[key])
+          };
         }
       }
 
